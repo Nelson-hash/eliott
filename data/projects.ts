@@ -11,7 +11,7 @@ export const projects: Project[] = [
   {
     id: 'urban-portraits',
     title: 'Urban Portraits',
-    coverImage: 'https://images.unsplash.com/photo-1504703395950-b89145a5425b',
+    coverImage: '/data/andy_war.jpg',
     images: [
       'https://images.unsplash.com/photo-1504703395950-b89145a5425b',
       'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f',
