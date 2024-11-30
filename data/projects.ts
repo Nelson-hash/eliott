@@ -11,7 +11,7 @@ export const projects: Project[] = [
   {
     id: 'urban-portraits',
     title: 'Urban Portraits',
-    coverImage: 'https://images.unsplash.com/photo-1504703395950-b89145a5425b',
+    coverImage: 'https://media.licdn.com/dms/image/v2/D4E22AQH3EThejzgzug/feedshare-shrink_800/feedshare-shrink_800/0/1725611231479?e=2147483647&v=beta&t=fxoqfvDG0taSYObuVuHE0OQ5Hu-W6zelpi90X0AsxWU',
     images: [
       'https://images.unsplash.com/photo-1504703395950-b89145a5425b',
       'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f',
