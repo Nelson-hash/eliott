@@ -1,8 +1,8 @@
 export function getImageUrl(imagePath: string): string {
-  // This function helps handle both local and remote images
-  if (imagePath.startsWith('http')) {
+  // If the path already starts with a slash or http, return as is
+  if (imagePath.startsWith('/') || imagePath.startsWith('http')) {
     return imagePath;
   }
-  // For local images in the public directory
-  return `/images/${imagePath}`;
+  // Otherwise, prepend a slash
+  return `/${imagePath}`;
 }
