@@ -1,112 +1,59 @@
-export interface Project {
-  id: string;
-  title: string;
-  coverImage: string;
-  images: string[];
-  description: string;
-  extendedDescription?: string;
-}
+import { Project } from '../types/project';
 
 export const projects: Project[] = [
   {
     id: 'urban-portraits',
     title: 'Urban Portraits',
-    coverImage: 'https://media.licdn.com/dms/image/v2/D4E22AQH3EThejzgzug/feedshare-shrink_800/feedshare-shrink_800/0/1725611231479?e=2147483647&v=beta&t=fxoqfvDG0taSYObuVuHE0OQ5Hu-W6zelpi90X0AsxWU',
+    coverImage: 'urban-portraits/cover.jpg',
     images: [
-      'https://images.unsplash.com/photo-1504703395950-b89145a5425b',
-      'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f',
-      'https://images.unsplash.com/photo-1469334031218-e382a71b716b'
+      'urban-portraits/01.jpg',
+      'urban-portraits/02.jpg',
+      'urban-portraits/03.jpg'
     ],
-    description: 'Street photography capturing the essence of urban life through portraiture',
-    extendedDescription: 'A series exploring the intersection of human presence and urban architecture, documenting fleeting moments of daily life in the city.'
+    description: 'Street photography capturing the essence of urban life through portraiture'
   },
   {
     id: 'architectural-studies',
     title: 'Architectural Studies',
-    coverImage: 'https://images.unsplash.com/photo-1493397212122-2b85dda8106b',
+    coverImage: 'architectural/cover.jpg',
     images: [
-      'https://images.unsplash.com/photo-1493397212122-2b85dda8106b',
-      'https://images.unsplash.com/photo-1486325212027-8081e485255e',
-      'https://images.unsplash.com/photo-1495542779398-9fec7dc7986c'
+      'architectural/01.jpg',
+      'architectural/02.jpg',
+      'architectural/03.jpg'
     ],
-    description: 'Vertical exploration of modern architectural forms',
-    extendedDescription: 'An examination of contemporary architecture through a minimalist lens, focusing on clean lines and geometric patterns.'
+    description: 'Vertical exploration of modern architectural forms'
   },
   {
     id: 'light-shadow',
     title: 'Light & Shadow',
-    coverImage: 'https://images.unsplash.com/photo-1494236581341-7d38b2e7d824',
+    coverImage: 'light-shadow/cover.jpg',
     images: [
-      'https://images.unsplash.com/photo-1494236581341-7d38b2e7d824',
-      'https://images.unsplash.com/photo-1504198322253-cfa87a0ff25f',
-      'https://images.unsplash.com/photo-1488972685288-c3fd157d7c7a'
+      'light-shadow/01.jpg',
+      'light-shadow/02.jpg',
+      'light-shadow/03.jpg'
     ],
     description: 'A study of natural light and dramatic shadows in vertical compositions'
   },
   {
     id: 'urban-solitude',
     title: 'Urban Solitude',
-    coverImage: 'https://images.unsplash.com/photo-1496449903678-68ddcb189a24',
+    coverImage: 'urban-solitude/cover.jpg',
     images: [
-      'https://images.unsplash.com/photo-1496449903678-68ddcb189a24',
-      'https://images.unsplash.com/photo-1491234323906-4f056ca415bc',
-      'https://images.unsplash.com/photo-1500462918059-b1a0cb512f1d'
+      'urban-solitude/01.jpg',
+      'urban-solitude/02.jpg',
+      'urban-solitude/03.jpg'
     ],
     description: 'Exploring isolation and contemplation in urban environments'
   },
   {
     id: 'abstract-forms',
     title: 'Abstract Forms',
-    coverImage: 'https://images.unsplash.com/photo-1493397212122-2b85dda8106b',
+    coverImage: 'abstract/cover.jpg',
     images: [
-      'https://images.unsplash.com/photo-1493397212122-2b85dda8106b',
-      'https://images.unsplash.com/photo-1496449903678-68ddcb189a24',
-      'https://images.unsplash.com/photo-1488972685288-c3fd157d7c7a'
+      'abstract/01.jpg',
+      'abstract/02.jpg',
+      'abstract/03.jpg'
     ],
     description: 'Abstract architectural details and geometric patterns'
-  },
-  {
-    id: 'city-nights',
-    title: 'City Nights',
-    coverImage: 'https://images.unsplash.com/photo-1514565131-fce0801e5785',
-    images: [
-      'https://images.unsplash.com/photo-1514565131-fce0801e5785',
-      'https://images.unsplash.com/photo-1495542779398-9fec7dc7986c',
-      'https://images.unsplash.com/photo-1501785888041-af3ef285b470'
-    ],
-    description: 'Nocturnal urban landscapes and city life after dark'
-  },
-  {
-    id: 'geometric-city',
-    title: 'Geometric City',
-    coverImage: 'https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99',
-    images: [
-      'https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99',
-      'https://images.unsplash.com/photo-1487017159836-4e23ece2e4cf',
-      'https://images.unsplash.com/photo-1492321936769-b49830bc1d1e'
-    ],
-    description: 'Exploring geometric patterns in urban architecture'
-  },
-  {
-    id: 'urban-minimalism',
-    title: 'Urban Minimalism',
-    coverImage: 'https://images.unsplash.com/photo-1504198322253-cfa87a0ff25f',
-    images: [
-      'https://images.unsplash.com/photo-1504198322253-cfa87a0ff25f',
-      'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4',
-      'https://images.unsplash.com/photo-1486325212027-8081e485255e'
-    ],
-    description: 'Minimalist approach to urban photography'
-  },
-  {
-    id: 'vertical-spaces',
-    title: 'Vertical Spaces',
-    coverImage: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750',
-    images: [
-      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750',
-      'https://images.unsplash.com/photo-1494236581341-7d38b2e7d824',
-      'https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99'
-    ],
-    description: 'Exploring vertical architectural elements and perspectives'
   }
 ];
