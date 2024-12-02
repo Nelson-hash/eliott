@@ -3,6 +3,6 @@ export function getImageUrl(imagePath: string): string {
   if (imagePath.startsWith('http')) {
     return imagePath;
   }
-  // For local images, we use the Vite public directory
-  return `/images/${imagePath}`;
+  // For local images in the public directory
+  return `/public/images/${imagePath}`;
 }
