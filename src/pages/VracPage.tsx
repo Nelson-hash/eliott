@@ -3,12 +3,12 @@ import { getImageUrl } from '../utils/imageUtils';
 
 export function VracPage() {
   const vracImages = [
-    '/images/vrac/01.jpg',
-    '/images/vrac/02.jpg',
-    '/images/vrac/03.jpg',
-    '/images/vrac/04.jpg',
-    '/images/vrac/05.jpg',
-    '/images/vrac/06.jpg'
+    'vrac/01.jpg',
+    'vrac/02.jpg',
+    'vrac/03.jpg',
+    'vrac/04.jpg',
+    'vrac/05.jpg',
+    'vrac/06.jpg'
   ];
 
   return (
@@ -29,5 +29,4 @@ export function VracPage() {
       </div>
     </main>
   );
-}
 }
