@@ -4,5 +4,5 @@ export function getImageUrl(imagePath: string): string {
     return imagePath;
   }
   // For local images in the public directory
-  return `/public/images/${imagePath}`;
+  return `/images/${imagePath}`;
 }
