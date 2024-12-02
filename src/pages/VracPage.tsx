@@ -1,13 +1,14 @@
 import React from 'react';
+import { getImageUrl } from '../utils/imageUtils';
 
 export function VracPage() {
   const vracImages = [
-    'https://images.unsplash.com/photo-1504703395950-b89145a5425b',
-    'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f',
-    'https://images.unsplash.com/photo-1493397212122-2b85dda8106b',
-    'https://images.unsplash.com/photo-1494236581341-7d38b2e7d824',
-    'https://images.unsplash.com/photo-1496449903678-68ddcb189a24',
-    'https://images.unsplash.com/photo-1488972685288-c3fd157d7c7a'
+    '/images/vrac/01.jpg',
+    '/images/vrac/02.jpg',
+    '/images/vrac/03.jpg',
+    '/images/vrac/04.jpg',
+    '/images/vrac/05.jpg',
+    '/images/vrac/06.jpg'
   ];
 
   return (
@@ -18,7 +19,7 @@ export function VracPage() {
           {vracImages.map((image, index) => (
             <img
               key={index}
-              src={image}
+              src={getImageUrl(image)}
               alt={`Vrac image ${index + 1}`}
               className="w-full aspect-[2/3] object-cover mb-6"
               loading="lazy"
@@ -28,4 +29,5 @@ export function VracPage() {
       </div>
     </main>
   );
+}
 }
