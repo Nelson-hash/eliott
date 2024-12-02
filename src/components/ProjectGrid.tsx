@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { projects } from '../data/projects';
+import { getImageUrl } from '../utils/imageUtils';
 
 export function ProjectGrid() {
   return (
@@ -12,7 +13,7 @@ export function ProjectGrid() {
           className="block mb-6 group relative"
         >
           <img
-            src={project.coverImage}
+            src={getImageUrl(project.coverImage)}
             alt={project.title}
             className="w-full aspect-[2/3] object-cover"
             loading="lazy"
@@ -26,4 +27,5 @@ export function ProjectGrid() {
       ))}
     </div>
   );
+}
 }
