@@ -17,6 +17,10 @@ export function ProjectGrid() {
             alt={project.title}
             className="w-full aspect-[2/3] object-cover"
             loading="lazy"
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              console.error(`Failed to load image: ${target.src}`);
+            }}
           />
           <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-opacity flex items-center justify-center">
             <span className="text-white opacity-0 group-hover:opacity-100 transition-opacity font-light text-xl">
