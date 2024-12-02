@@ -23,6 +23,10 @@ export function VracPage() {
               alt={`Vrac image ${index + 1}`}
               className="w-full aspect-[2/3] object-cover mb-6"
               loading="lazy"
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                console.error(`Failed to load image: ${target.src}`);
+              }}
             />
           ))}
         </div>
