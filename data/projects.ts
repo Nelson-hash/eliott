@@ -2,58 +2,69 @@ import { Project } from '../types/project';
 
 export const projects: Project[] = [
   {
-    id: 'urban-portraits',
-    title: 'Urban Portraits',
-    coverImage: 'urban-portraits/cover.jpg',
+    id: 'chariot-de-course',
+    title: 'CHARIOT DE COURSE',
+    coverImage: 'chariot-de-course/cover.jpg',
     images: [
-      'urban-portraits/01.jpg',
-      'urban-portraits/02.jpg',
-      'urban-portraits/03.jpg'
+      'chariot-de-course/01.jpg',
+      'chariot-de-course/02.jpg',
+      'chariot-de-course/03.jpg'
     ],
     description: 'Street photography capturing the essence of urban life through portraiture'
   },
   {
-    id: 'architectural-studies',
-    title: 'Architectural Studies',
-    coverImage: 'architectural/cover.jpg',
+    id: 'rideau-message',
+    title: 'RIDEAU MESSAGE',
+    coverImage: 'rideau-message/cover.jpg',
     images: [
-      'architectural/01.jpg',
-      'architectural/02.jpg',
-      'architectural/03.jpg'
+      'rideau-message/01.jpg',
+      'rideau-message/02.jpg',
+      'rideau-message/03.jpg'
     ],
     description: 'Vertical exploration of modern architectural forms'
   },
   {
-    id: 'light-shadow',
-    title: 'Light & Shadow',
-    coverImage: 'light-shadow/cover.jpg',
+    id: 'puzzle-marrant',
+    title: 'PUZZLE MARRANT',
+    coverImage: 'puzzle-marrant/cover.jpg',
     images: [
-      'light-shadow/01.jpg',
-      'light-shadow/02.jpg',
-      'light-shadow/03.jpg'
+      'puzzle-marrant/01.jpg',
+      'puzzle-marrant/02.jpg',
+      'puzzle-marrant/03.jpg'
     ],
     description: 'A study of natural light and dramatic shadows in vertical compositions'
   },
   {
-    id: 'urban-solitude',
-    title: 'Urban Solitude',
-    coverImage: 'urban-solitude/cover.jpg',
+    id: 'tipi',
+    title: 'TIPI',
+    coverImage: 'tipi/cover.jpg',
     images: [
-      'urban-solitude/01.jpg',
-      'urban-solitude/02.jpg',
-      'urban-solitude/03.jpg'
+      'tipi/01.jpg',
+      'tipi/02.jpg',
+      'tipi/03.jpg'
     ],
     description: 'Exploring isolation and contemplation in urban environments'
   },
   {
-    id: 'abstract-forms',
-    title: 'Abstract Forms',
-    coverImage: 'abstract/cover.jpg',
+    id: 'maison-beton',
+    title: 'MAISON BETON',
+    coverImage: 'maison-beton/cover.jpg',
     images: [
-      'abstract/01.jpg',
-      'abstract/02.jpg',
-      'abstract/03.jpg'
+      'maison-beton/01.jpg',
+      'maison-beton/02.jpg',
+      'maison-beton/03.jpg'
     ],
     description: 'Abstract architectural details and geometric patterns'
+  },
+  {
+    id: 'message-tissus',
+    title: 'MESSAGE TISSUS',
+    coverImage: 'message-tissus/cover.jpg',
+    images: [
+      'message-tissus/01.jpg',
+      'message-tissus/02.jpg',
+      'message-tissus/03.jpg'
+    ],
+    description: 'Exploring textile patterns and woven messages in urban spaces'
   }
 ];
