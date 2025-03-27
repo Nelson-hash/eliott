@@ -7,13 +7,10 @@ export function AboutPage() {
         <h1 className="text-3xl font-light text-gray-900 mb-8">À propos</h1>
         <div className="prose text-gray-600">
           <p className="mb-6">
-            Photographe basé à Paris, je capture l'essence des espaces urbains et des moments de vie
-            à travers mon objectif. Mon travail explore la relation entre l'architecture,
-            la lumière naturelle et l'expérience humaine.
+            JE MAPPELLE ELIOTT ET DANS LA VIE JE BRICOLE.
           </p>
           <p>
-            Pour toute demande de collaboration ou de projet, n'hésitez pas à me contacter à
-            l'adresse suivante : contact@eliottgoyeau.com
+            MON INSTA : @ELIOTTYISDROOPY
           </p>
         </div>
       </div>
