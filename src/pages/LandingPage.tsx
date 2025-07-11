@@ -40,16 +40,19 @@ export function LandingPage() {
       const j = Math.floor(Math.random() * (i + 1));
       [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
-    // Duplicate the array to create seamless loop
-    return [...shuffled, ...shuffled];
+    // Triple the array to ensure smooth infinite scroll
+    return [...shuffled, ...shuffled, ...shuffled];
   });
 
   useEffect(() => {
     const interval = setInterval(() => {
       setScrollPosition((prev) => {
-        const newPosition = prev + 0.06; // 20% faster scroll speed
-        // Reset when we've scrolled through one complete set
-        if (newPosition >= 50) {
+        const newPosition = prev + 1; // Scroll 1 pixel at a time
+        // Reset after scrolling through one complete set
+        const imageWidth = 250; // Approximate width of each image including margins
+        const resetPoint = shuffledImages.length * imageWidth / 3; // One third of total width
+        
+        if (newPosition >= resetPoint) {
           return 0;
         }
         return newPosition;
@@ -57,7 +60,7 @@ export function LandingPage() {
     }, 16); // 60fps for smooth animation
 
     return () => clearInterval(interval);
-  }, []);
+  }, [shuffledImages.length]);
 
   const handleEnter = () => {
     navigate('/home');
@@ -69,7 +72,7 @@ export function LandingPage() {
         <div 
           className="flex h-full items-center px-8"
           style={{ 
-            transform: `translateX(-${scrollPosition}%)`,
+            transform: `translateX(-${scrollPosition}px)`,
             transition: 'none'
           }}
         >
