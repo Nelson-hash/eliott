@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 export function LandingPage() {
   const navigate = useNavigate();
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [scrollPosition, setScrollPosition] = useState(0);
   
   // All project images for the slideshow
   const allImages = [
@@ -40,16 +40,24 @@ export function LandingPage() {
       const j = Math.floor(Math.random() * (i + 1));
       [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
-    return shuffled;
+    // Duplicate the array to create seamless loop
+    return [...shuffled, ...shuffled];
   });
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % shuffledImages.length);
-    }, 600); // Slower transition - 2x slower than before
+      setScrollPosition((prev) => {
+        const newPosition = prev + 0.05; // Very slow continuous scroll
+        // Reset when we've scrolled through one complete set
+        if (newPosition >= 50) {
+          return 0;
+        }
+        return newPosition;
+      });
+    }, 16); // 60fps for smooth animation
 
     return () => clearInterval(interval);
-  }, [shuffledImages.length]);
+  }, []);
 
   const handleEnter = () => {
     navigate('/home');
@@ -57,18 +65,25 @@ export function LandingPage() {
 
   return (
     <div className="fixed inset-0 bg-white flex flex-col items-center justify-center px-8">
-      <div className="relative w-full max-w-[90vw] h-[400px] overflow-hidden border border-black">
+      <div className="relative w-full max-w-[90vw] h-[400px] overflow-hidden border-2 border-black bg-white">
         <div 
-          className="flex transition-transform duration-600 ease-linear h-full"
-          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+          className="flex h-full items-center px-8"
+          style={{ 
+            transform: `translateX(-${scrollPosition}%)`,
+            transition: 'none'
+          }}
         >
           {shuffledImages.map((image, index) => (
-            <img
+            <div
               key={index}
-              src={image}
-              alt=""
-              className="w-full h-full object-cover flex-shrink-0"
-            />
+              className="flex-shrink-0 h-[350px] mx-4"
+            >
+              <img
+                src={image}
+                alt=""
+                className="h-full w-auto object-contain"
+              />
+            </div>
           ))}
         </div>
       </div>
