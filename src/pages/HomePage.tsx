@@ -32,6 +32,26 @@ export function HomePage() {
       id: 'tipi',
       title: 'TIPI',
       image: '/images/tipi/cover.jpg'
+    },
+    {
+      id: 'interphone',
+      title: 'INTERPHONE',
+      image: '/images/interphone/cover.jpg'
+    },
+    {
+      id: 'gustave',
+      title: 'GUSTAVE',
+      image: '/images/gustave/cover.jpeg'
+    },
+    {
+      id: 'btlt',
+      title: 'BTLT',
+      image: '/images/btlt/cover.jpg'
+    },
+    {
+      id: 'boite',
+      title: 'BOITE',
+      image: '/images/boite/cover.jpeg'
     }
   ];
 
