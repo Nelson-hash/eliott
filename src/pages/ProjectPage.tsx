@@ -5,10 +5,37 @@ export function ProjectPage() {
   const { id } = useParams();
   
   const getProjectImages = (projectId: string) => {
+    // Project-specific image configurations
+    const projectConfigs: { [key: string]: { cover: string; images: string[] } } = {
+      'interphone': {
+        cover: 'cover.jpg',
+        images: ['01.jpg', '02.jpg', '03.jpg']
+      },
+      'gustave': {
+        cover: 'cover.jpeg',
+        images: ['01.jpg', '02.jpg']
+      },
+      'btlt': {
+        cover: 'cover.jpg',
+        images: ['01.jpg', '02.jpeg']
+      },
+      'boite': {
+        cover: 'cover.jpeg',
+        images: ['01.jpg', '02.jpeg', '03.jpg', '04.jpg', '05.jpg']
+      }
+    };
+
+    // Default configuration for existing projects
+    const defaultConfig = {
+      cover: 'cover.jpg',
+      images: ['01.jpg', '02.jpg']
+    };
+
+    const config = projectConfigs[projectId] || defaultConfig;
+    
     return [
-      `/images/${projectId}/cover.jpg`,
-      `/images/${projectId}/01.jpg`,
-      `/images/${projectId}/02.jpg`
+      `/images/${projectId}/${config.cover}`,
+      ...config.images.map(img => `/images/${projectId}/${img}`)
     ];
   };
 
