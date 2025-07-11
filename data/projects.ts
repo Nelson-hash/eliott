@@ -72,5 +72,53 @@ export const projects: Project[] = [
       '/images/tipi/02.jpg'
     ],
     description: 'Exploring isolation and contemplation in urban environments'
+  },
+  {
+    id: 'interphone',
+    title: 'INTERPHONE',
+    coverImage: '/images/interphone/cover.jpg',
+    images: [
+      '/images/interphone/cover.jpg',
+      '/images/interphone/01.jpg',
+      '/images/interphone/02.jpg',
+      '/images/interphone/03.jpg'
+    ],
+    description: 'Communication devices and urban connectivity'
+  },
+  {
+    id: 'gustave',
+    title: 'GUSTAVE',
+    coverImage: '/images/gustave/cover.jpeg',
+    images: [
+      '/images/gustave/cover.jpeg',
+      '/images/gustave/01.jpg',
+      '/images/gustave/02.jpg'
+    ],
+    description: 'Personal narratives and intimate moments'
+  },
+  {
+    id: 'btlt',
+    title: 'BTLT',
+    coverImage: '/images/btlt/cover.jpg',
+    images: [
+      '/images/btlt/cover.jpg',
+      '/images/btlt/01.jpg',
+      '/images/btlt/02.jpeg'
+    ],
+    description: 'Contemporary artistic expressions'
+  },
+  {
+    id: 'boite',
+    title: 'BOITE',
+    coverImage: '/images/boite/cover.jpeg',
+    images: [
+      '/images/boite/cover.jpeg',
+      '/images/boite/01.jpg',
+      '/images/boite/02.jpeg',
+      '/images/boite/03.jpg',
+      '/images/boite/04.jpg',
+      '/images/boite/05.jpg'
+    ],
+    description: 'Containers and enclosed spaces in urban context'
   }
 ];
