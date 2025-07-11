@@ -47,7 +47,7 @@ export function LandingPage() {
   useEffect(() => {
     const interval = setInterval(() => {
       setScrollPosition((prev) => {
-        const newPosition = prev + 0.05; // Very slow continuous scroll
+        const newPosition = prev + 0.06; // 20% faster scroll speed
         // Reset when we've scrolled through one complete set
         if (newPosition >= 50) {
           return 0;
