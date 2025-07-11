@@ -46,7 +46,7 @@ export function LandingPage() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % shuffledImages.length);
-    }, 300); // Slightly slower for better visibility
+    }, 600); // Slower transition - 2x slower than before
 
     return () => clearInterval(interval);
   }, [shuffledImages.length]);
@@ -56,10 +56,10 @@ export function LandingPage() {
   };
 
   return (
-    <div className="fixed inset-0 bg-white flex flex-col items-center justify-center px-4">
-      <div className="relative w-full max-w-[600px] aspect-[3/2] overflow-hidden">
+    <div className="fixed inset-0 bg-white flex flex-col items-center justify-center px-8">
+      <div className="relative w-full max-w-[90vw] h-[400px] overflow-hidden border border-black">
         <div 
-          className="flex transition-transform duration-300 ease-linear h-full"
+          className="flex transition-transform duration-600 ease-linear h-full"
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}
         >
           {shuffledImages.map((image, index) => (
