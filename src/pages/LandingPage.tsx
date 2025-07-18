@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 export function LandingPage() {
   const navigate = useNavigate();
-  const [scrollPosition, setScrollPosition] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
   
   // All project images for the slideshow
   const allImages = [
@@ -56,24 +56,13 @@ export function LandingPage() {
       const j = Math.floor(Math.random() * (i + 1));
       [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
     }
-    // Triple the array to ensure smooth infinite scroll
-    return [...shuffled, ...shuffled, ...shuffled];
+    return shuffled;
   });
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setScrollPosition((prev) => {
-        const newPosition = prev + 1; // Scroll 1 pixel at a time
-        // Reset after scrolling through one complete set
-        const imageWidth = 250; // Approximate width of each image including margins
-        const resetPoint = shuffledImages.length * imageWidth / 3; // One third of total width
-        
-        if (newPosition >= resetPoint) {
-          return 0;
-        }
-        return newPosition;
-      });
-    }, 16); // 60fps for smooth animation
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % shuffledImages.length);
+    }, 2000); // Change image every 2 seconds
 
     return () => clearInterval(interval);
   }, [shuffledImages.length]);
@@ -83,32 +72,18 @@ export function LandingPage() {
   };
 
   return (
-    <div className="fixed inset-0 bg-white flex flex-col items-center justify-center px-8">
-      <div className="relative w-full max-w-[90vw] h-[400px] overflow-hidden border-2 border-black bg-white">
-        <div 
-          className="flex h-full items-center px-8"
-          style={{ 
-            transform: `translateX(-${scrollPosition}px)`,
-            transition: 'none'
-          }}
-        >
-          {shuffledImages.map((image, index) => (
-            <div
-              key={index}
-              className="flex-shrink-0 h-[350px] mx-4"
-            >
-              <img
-                src={image}
-                alt=""
-                className="h-full w-auto object-contain"
-              />
-            </div>
-          ))}
-        </div>
+    <div className="fixed inset-0 bg-white flex flex-col items-center justify-center">
+      <div className="relative flex-1 w-full flex items-center justify-center px-8 py-8">
+        <img
+          src={shuffledImages[currentIndex]}
+          alt=""
+          className="max-w-full max-h-full w-auto h-auto object-contain"
+          style={{ maxHeight: 'calc(100vh - 200px)' }}
+        />
       </div>
       <button
         onClick={handleEnter}
-        className="mt-12 px-8 py-3 border border-black hover:bg-black hover:text-white transition-colors text-sm tracking-wider font-light"
+        className="mb-12 px-8 py-3 border border-black hover:bg-black hover:text-white transition-colors text-sm tracking-wider font-light"
       >
         ENTRER
       </button>
