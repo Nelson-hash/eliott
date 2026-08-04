@@ -1,5 +1,20 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+// Liste des images du défilé à précharger silencieusement
+const IMAGES_TO_PRELOAD = [
+  '/images/interphone/cover.webp',
+  '/images/gustave/cover.webp',
+  '/images/btlt/cover.webp',
+  '/images/boite/cover.webp',
+  '/images/chariot-de-course/cover.webp',
+  '/images/maison-beton/cover.webp',
+  '/images/banc/banc-1.webp',
+  '/images/message-tissus/cover.webp',
+  '/images/puzzle-marrant/cover.webp',
+  '/images/rideau-message/cover.webp',
+  '/images/tipi/cover.webp',
+];
 
 interface Particle {
   x: number;
@@ -19,6 +34,15 @@ export function LandingPage() {
   const navigate = useNavigate();
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
+  // PRÉCHARGEMENT DANS LE CACHE DU NAVIGATEUR
+  useEffect(() => {
+    IMAGES_TO_PRELOAD.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, []);
+
+  // ANIMATION DE CONFETTIS
   const triggerConfetti = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -33,23 +57,22 @@ export function LandingPage() {
     const centerX = window.innerWidth / 2;
     const centerY = window.innerHeight / 2;
 
-    // Projection massive (250 confettis)
     for (let i = 0; i < 250; i++) {
       const angle = Math.random() * Math.PI * 2;
-      const speed = Math.random() * 20 + 6; // Explosion plus puissante
+      const speed = Math.random() * 20 + 6;
 
       particles.push({
         x: centerX,
         y: centerY,
         vx: Math.cos(angle) * speed,
-        vy: Math.sin(angle) * speed - 6, // Impulsion vers le haut
+        vy: Math.sin(angle) * speed - 6,
         rotation: Math.random() * Math.PI * 2,
         vRotation: (Math.random() - 0.5) * 0.4,
         color: colors[Math.floor(Math.random() * colors.length)],
         width: Math.random() * 12 + 6,
         height: Math.random() * 8 + 4,
         alpha: 1,
-        decay: Math.random() * 0.008 + 0.006, // Retombée plus longue
+        decay: Math.random() * 0.008 + 0.006,
       });
     }
 
@@ -63,8 +86,8 @@ export function LandingPage() {
           active = true;
           p.x += p.vx;
           p.y += p.vy;
-          p.vx *= 0.97; // Frottement de l'air
-          p.vy = p.vy * 0.97 + 0.4; // Gravité
+          p.vx *= 0.97;
+          p.vy = p.vy * 0.97 + 0.4;
           p.rotation += p.vRotation;
           p.alpha -= p.decay;
 
