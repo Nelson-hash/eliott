@@ -1,86 +1,54 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+
+// Photos du défilé automatique
+const SLIDESHOW_IMAGES = [
+  '/images/interphone/cover.jpg',
+  '/images/gustave/cover.jpeg',
+  '/images/btlt/cover.jpg',
+  '/images/boite/cover.jpeg',
+  '/images/chariot-de-course/cover.jpg',
+  '/images/maison-beton/cover.jpg',
+  '/images/banc/banc-1.jpeg',
+  '/images/message-tissus/cover.jpg',
+  '/images/puzzle-marrant/cover.jpg',
+  '/images/rideau-message/cover.jpg',
+  '/images/tipi/cover.jpg',
+];
 
 export function HomePage() {
-  const projects = [
-    // New projects first
-    {
-      id: 'interphone',
-      title: 'INTERPHONE',
-      image: '/images/interphone/cover.jpg'
-    },
-    {
-      id: 'gustave',
-      title: 'GUSTAVE',
-      image: '/images/gustave/cover.jpeg'
-    },
-    {
-      id: 'btlt',
-      title: 'BTLT',
-      image: '/images/btlt/cover.jpg'
-    },
-    {
-      id: 'boite',
-      title: 'BOITE',
-      image: '/images/boite/cover.jpeg'
-    },
-    // Original projects
-    {
-      id: 'chariot-de-course',
-      title: 'CHARIOT DE COURSE',
-      image: '/images/chariot-de-course/cover.jpg'
-    },
-    {
-      id: 'maison-beton',
-      title: 'MAISON BETON',
-      image: '/images/maison-beton/cover.jpg'
-    },
-    {
-      id: 'message-tissus',
-      title: 'MESSAGE TISSUS',
-      image: '/images/message-tissus/cover.jpg'
-    },
-    {
-      id: 'puzzle-marrant',
-      title: 'PUZZLE MARRANT',
-      image: '/images/puzzle-marrant/cover.jpg'
-    },
-    {
-      id: 'rideau-message',
-      title: 'RIDEAU MESSAGE',
-      image: '/images/rideau-message/cover.jpg'
-    },
-    {
-      id: 'tipi',
-      title: 'TIPI',
-      image: '/images/tipi/cover.jpg'
-    }
-  ];
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  useEffect(() => {
+    if (isPaused) return;
+
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % SLIDESHOW_IMAGES.length);
+    }, 2200);
+
+    return () => clearInterval(interval);
+  }, [isPaused]);
+
+  const togglePause = () => {
+    setIsPaused((prev) => !prev);
+  };
 
   return (
-    <main className="min-h-screen bg-white pt-24">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project) => (
-            <Link
-              key={project.id}
-              to={`/projects/${project.id}`}
-              className="group relative"
-            >
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full aspect-[2/3] object-cover"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-opacity flex items-center justify-center">
-                <span className="text-white opacity-0 group-hover:opacity-100 transition-opacity font-light text-xl">
-                  {project.title}
-                </span>
-              </div>
-            </Link>
-          ))}
-        </div>
+    <main
+      onClick={togglePause}
+      className="relative w-full h-screen bg-white flex items-center justify-center cursor-pointer select-none overflow-hidden pt-20"
+    >
+      <div className="w-full h-full p-6 md:p-12 flex items-center justify-center">
+        <img
+          key={currentIndex}
+          src={SLIDESHOW_IMAGES[currentIndex]}
+          alt={`Slide ${currentIndex + 1}`}
+          className="max-w-full max-h-[82vh] object-contain transition-opacity duration-500 ease-in-out"
+        />
+      </div>
+
+      <div className="absolute bottom-6 right-6 font-mono text-[11px] uppercase tracking-widest text-gray-400 bg-white/80 px-3 py-1.5 border border-gray-200 backdrop-blur-sm pointer-events-none">
+        {isPaused ? 'PAUSE (Cliquer pour relancer)' : 'DÉFILÉ (Cliquer pour suspendre)'}
       </div>
     </main>
   );
