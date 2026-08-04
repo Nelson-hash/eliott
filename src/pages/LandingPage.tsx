@@ -1,6 +1,20 @@
 import React, { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+interface Particle {
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  rotation: number;
+  vRotation: number;
+  color: string;
+  width: number;
+  height: number;
+  alpha: number;
+  decay: number;
+}
+
 export function LandingPage() {
   const navigate = useNavigate();
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -14,31 +28,28 @@ export function LandingPage() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    const particles: Array<{
-      x: number;
-      y: number;
-      vx: number;
-      vy: number;
-      color: string;
-      size: number;
-      alpha: number;
-    }> = [];
-
-    const colors = ['#000000', '#333333', '#666666', '#999999', '#cccccc'];
+    const particles: Particle[] = [];
+    const colors = ['#000000', '#111111', '#333333', '#555555', '#888888', '#aaaaaa', '#cccccc'];
     const centerX = window.innerWidth / 2;
     const centerY = window.innerHeight / 2;
 
-    for (let i = 0; i < 75; i++) {
+    // Projection massive (250 confettis)
+    for (let i = 0; i < 250; i++) {
       const angle = Math.random() * Math.PI * 2;
-      const speed = Math.random() * 9 + 2;
+      const speed = Math.random() * 20 + 6; // Explosion plus puissante
+
       particles.push({
         x: centerX,
         y: centerY,
         vx: Math.cos(angle) * speed,
-        vy: Math.sin(angle) * speed - 2.5,
+        vy: Math.sin(angle) * speed - 6, // Impulsion vers le haut
+        rotation: Math.random() * Math.PI * 2,
+        vRotation: (Math.random() - 0.5) * 0.4,
         color: colors[Math.floor(Math.random() * colors.length)],
-        size: Math.random() * 6 + 4,
+        width: Math.random() * 12 + 6,
+        height: Math.random() * 8 + 4,
         alpha: 1,
+        decay: Math.random() * 0.008 + 0.006, // Retombée plus longue
       });
     }
 
@@ -52,13 +63,17 @@ export function LandingPage() {
           active = true;
           p.x += p.vx;
           p.y += p.vy;
-          p.vy += 0.18;
-          p.alpha -= 0.016;
+          p.vx *= 0.97; // Frottement de l'air
+          p.vy = p.vy * 0.97 + 0.4; // Gravité
+          p.rotation += p.vRotation;
+          p.alpha -= p.decay;
 
           ctx.save();
           ctx.globalAlpha = Math.max(0, p.alpha);
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.rotation);
           ctx.fillStyle = p.color;
-          ctx.fillRect(p.x, p.y, p.size, p.size);
+          ctx.fillRect(-p.width / 2, -p.height / 2, p.width, p.height);
           ctx.restore();
         }
       });
