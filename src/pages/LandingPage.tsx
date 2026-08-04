@@ -1,91 +1,88 @@
-import React, { useEffect, useState } from 'react';
+import React, { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export function LandingPage() {
   const navigate = useNavigate();
-  const [currentIndex, setCurrentIndex] = useState(0);
-  
-  // All project images for the slideshow
-  const allImages = [
-    '/images/chariot-de-course/cover.jpg',
-    '/images/chariot-de-course/01.jpg',
-    '/images/chariot-de-course/02.jpg',
-    '/images/maison-beton/cover.jpg',
-    '/images/maison-beton/01.jpg',
-    '/images/maison-beton/02.jpg',
-    '/images/message-tissus/cover.jpg',
-    '/images/message-tissus/01.jpg',
-    '/images/message-tissus/02.jpg',
-    '/images/puzzle-marrant/cover.jpg',
-    '/images/puzzle-marrant/01.jpg',
-    '/images/puzzle-marrant/02.jpg',
-    '/images/rideau-message/cover.jpg',
-    '/images/rideau-message/01.jpg',
-    '/images/rideau-message/02.jpg',
-    '/images/tipi/cover.jpg',
-    '/images/tipi/01.jpg',
-    '/images/tipi/02.jpg',
-    '/images/interphone/cover.jpg',
-    '/images/interphone/01.jpg',
-    '/images/interphone/02.jpg',
-    '/images/interphone/03.jpg',
-    '/images/gustave/cover.jpeg',
-    '/images/gustave/01.jpg',
-    '/images/gustave/02.jpg',
-    '/images/btlt/cover.jpg',
-    '/images/btlt/01.jpg',
-    '/images/btlt/02.jpeg',
-    '/images/boite/cover.jpeg',
-    '/images/boite/01.jpg',
-    '/images/boite/02.jpeg',
-    '/images/boite/03.jpg',
-    '/images/boite/04.jpg',
-    '/images/boite/05.jpg',
-    '/images/vrac/01.jpg',
-    '/images/vrac/02.jpg',
-    '/images/vrac/03.jpg',
-    '/images/vrac/04.jpg',
-    '/images/vrac/05.jpg',
-    '/images/vrac/06.jpg'
-  ];
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
-  // Shuffle images for randomness
-  const [shuffledImages] = useState(() => {
-    const shuffled = [...allImages];
-    for (let i = shuffled.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  const triggerConfetti = () => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const particles: Array<{
+      x: number;
+      y: number;
+      vx: number;
+      vy: number;
+      color: string;
+      size: number;
+      alpha: number;
+    }> = [];
+
+    const colors = ['#000000', '#333333', '#666666', '#999999', '#cccccc'];
+    const centerX = window.innerWidth / 2;
+    const centerY = window.innerHeight / 2;
+
+    for (let i = 0; i < 75; i++) {
+      const angle = Math.random() * Math.PI * 2;
+      const speed = Math.random() * 9 + 2;
+      particles.push({
+        x: centerX,
+        y: centerY,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed - 2.5,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        size: Math.random() * 6 + 4,
+        alpha: 1,
+      });
     }
-    return shuffled;
-  });
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % shuffledImages.length);
-    }, 2000); // Change image every 2 seconds
+    let animationId: number;
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      let active = false;
 
-    return () => clearInterval(interval);
-  }, [shuffledImages.length]);
+      particles.forEach((p) => {
+        if (p.alpha > 0) {
+          active = true;
+          p.x += p.vx;
+          p.y += p.vy;
+          p.vy += 0.18;
+          p.alpha -= 0.016;
 
-  const handleEnter = () => {
-    navigate('/home');
+          ctx.save();
+          ctx.globalAlpha = Math.max(0, p.alpha);
+          ctx.fillStyle = p.color;
+          ctx.fillRect(p.x, p.y, p.size, p.size);
+          ctx.restore();
+        }
+      });
+
+      if (active) {
+        animationId = requestAnimationFrame(animate);
+      }
+    };
+
+    animate();
   };
 
   return (
-    <div className="fixed inset-0 bg-white flex flex-col items-center justify-center">
-      <div className="relative flex-1 w-full flex items-center justify-center px-8 py-8">
-        <img
-          src={shuffledImages[currentIndex]}
-          alt=""
-          className="max-w-full max-h-full w-auto h-auto object-contain"
-          style={{ maxHeight: 'calc(100vh - 200px)' }}
-        />
-      </div>
+    <div className="relative min-h-screen bg-white flex items-center justify-center overflow-hidden">
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 pointer-events-none z-10"
+      />
       <button
-        onClick={handleEnter}
-        className="mb-12 px-8 py-3 border border-black hover:bg-black hover:text-white transition-colors text-sm tracking-wider font-light"
+        onMouseEnter={triggerConfetti}
+        onClick={() => navigate('/home')}
+        className="text-5xl md:text-7xl font-light tracking-wider text-gray-900 hover:opacity-60 transition-opacity duration-300 z-20 px-8 py-4 cursor-pointer font-['Helvetica']"
       >
-        ENTRER
+        Entrer
       </button>
     </div>
   );
