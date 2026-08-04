@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 
-// Chemins d'accès aux images dans public/images/banc/
+// Chemins mis à jour en .webp
 const IMAGES = [
-  '/images/banc/banc-1.jpeg',
-  '/images/banc/banc-2.jpeg',
-  '/images/banc/banc-3.jpeg',
-  '/images/banc/banc-4.jpeg',
-  '/images/banc/banc-5.jpeg',
+  '/images/banc/banc-1.webp',
+  '/images/banc/banc-2.webp',
+  '/images/banc/banc-3.webp',
+  '/images/banc/banc-4.webp',
+  '/images/banc/banc-5.webp',
 ];
 
 export function MobilierPage() {
@@ -136,7 +136,6 @@ export function MobilierPage() {
             </dl>
           </div>
 
-          {/* APPEL À L'ACTION (CTA) */}
           <div className="space-y-3 pt-2">
             <a
               href="mailto:contact@eliotty-atelier.com?subject=Demande%20de%20devis%20-%20Banc%20250"
