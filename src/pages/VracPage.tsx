@@ -3,20 +3,21 @@ import { Link } from 'react-router-dom';
 
 export function VracPage() {
   const projects = [
-    { id: 'banc-250', title: 'BANC 250', image: '/images/banc/banc-1.jpeg', link: '/mobilier' },
-    { id: 'interphone', title: 'INTERPHONE', image: '/images/interphone/cover.jpg', link: '/projects/interphone' },
-    { id: 'gustave', title: 'GUSTAVE', image: '/images/gustave/cover.jpeg', link: '/projects/gustave' },
-    { id: 'btlt', title: 'BTLT', image: '/images/btlt/cover.jpg', link: '/projects/btlt' },
-    { id: 'boite', title: 'BOITE', image: '/images/boite/cover.jpeg', link: '/projects/boite' },
-    { id: 'chariot-de-course', title: 'CHARIOT DE COURSE', image: '/images/chariot-de-course/cover.jpg', link: '/projects/chariot-de-course' },
-    { id: 'maison-beton', title: 'MAISON BETON', image: '/images/maison-beton/cover.jpg', link: '/projects/maison-beton' },
-    { id: 'message-tissus', title: 'MESSAGE TISSUS', image: '/images/message-tissus/cover.jpg', link: '/projects/message-tissus' },
-    { id: 'puzzle-marrant', title: 'PUZZLE MARRANT', image: '/images/puzzle-marrant/cover.jpg', link: '/projects/puzzle-marrant' },
-    { id: 'rideau-message', title: 'RIDEAU MESSAGE', image: '/images/rideau-message/cover.jpg', link: '/projects/rideau-message' },
-    { id: 'tipi', title: 'TIPI', image: '/images/tipi/cover.jpg', link: '/projects/tipi' },
+    { id: 'banc-250', title: 'BANC 250', image: '/images/banc/banc-1.webp', link: '/mobilier' },
+    { id: 'interphone', title: 'INTERPHONE', image: '/images/interphone/cover.webp', link: '/projects/interphone' },
+    { id: 'gustave', title: 'GUSTAVE', image: '/images/gustave/cover.webp', link: '/projects/gustave' },
+    { id: 'btlt', title: 'BTLT', image: '/images/btlt/cover.webp', link: '/projects/btlt' },
+    { id: 'boite', title: 'BOITE', image: '/images/boite/cover.webp', link: '/projects/boite' },
+    { id: 'chariot-de-course', title: 'CHARIOT DE COURSE', image: '/images/chariot-de-course/cover.webp', link: '/projects/chariot-de-course' },
+    { id: 'maison-beton', title: 'MAISON BETON', image: '/images/maison-beton/cover.webp', link: '/projects/maison-beton' },
+    { id: 'message-tissus', title: 'MESSAGE TISSUS', image: '/images/message-tissus/cover.webp', link: '/projects/message-tissus' },
+    { id: 'puzzle-marrant', title: 'PUZZLE MARRANT', image: '/images/puzzle-marrant/cover.webp', link: '/projects/puzzle-marrant' },
+    { id: 'rideau-message', title: 'RIDEAU MESSAGE', image: '/images/rideau-message/cover.webp', link: '/projects/rideau-message' },
+    { id: 'tipi', title: 'TIPI', image: '/images/tipi/cover.webp', link: '/projects/tipi' },
   ];
 
-  const vracImages = Array.from({ length: 6 }, (_, i) => `/images/vrac/${String(i + 1).padStart(2, '0')}.jpg`);
+  // Images du vrac mises à jour en .webp
+  const vracImages = Array.from({ length: 6 }, (_, i) => `/images/vrac/${String(i + 1).padStart(2, '0')}.webp`);
 
   return (
     <main className="min-h-screen bg-white pt-28 pb-16">
