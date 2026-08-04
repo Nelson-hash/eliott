@@ -9,7 +9,6 @@ const IMAGES_TO_PRELOAD = [
   '/images/boite/cover.webp',
   '/images/chariot-de-course/cover.webp',
   '/images/maison-beton/cover.webp',
-  '/images/banc/banc-1.webp',
   '/images/message-tissus/cover.webp',
   '/images/puzzle-marrant/cover.webp',
   '/images/rideau-message/cover.webp',
