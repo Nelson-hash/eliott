@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-// Chemins mis à jour en .webp
+// Liste des visuels du défilé sans la photo du banc
 const SLIDESHOW_IMAGES = [
   '/images/interphone/cover.webp',
   '/images/gustave/cover.webp',
@@ -8,7 +8,6 @@ const SLIDESHOW_IMAGES = [
   '/images/boite/cover.webp',
   '/images/chariot-de-course/cover.webp',
   '/images/maison-beton/cover.webp',
-  '/images/banc/banc-1.webp',
   '/images/message-tissus/cover.webp',
   '/images/puzzle-marrant/cover.webp',
   '/images/rideau-message/cover.webp',
@@ -22,6 +21,7 @@ export function HomePage() {
   useEffect(() => {
     if (isPaused) return;
 
+    // Défilé toutes les 500 ms (0.5 s)
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % SLIDESHOW_IMAGES.length);
     }, 500);
