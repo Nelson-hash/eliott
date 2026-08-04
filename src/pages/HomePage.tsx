@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
 
+// Chemins mis à jour en .webp
 const SLIDESHOW_IMAGES = [
-  '/images/interphone/cover.jpg',
-  '/images/gustave/cover.jpeg',
-  '/images/btlt/cover.jpg',
-  '/images/boite/cover.jpeg',
-  '/images/chariot-de-course/cover.jpg',
-  '/images/maison-beton/cover.jpg',
-  '/images/banc/banc-1.jpeg',
-  '/images/message-tissus/cover.jpg',
-  '/images/puzzle-marrant/cover.jpg',
-  '/images/rideau-message/cover.jpg',
-  '/images/tipi/cover.jpg',
+  '/images/interphone/cover.webp',
+  '/images/gustave/cover.webp',
+  '/images/btlt/cover.webp',
+  '/images/boite/cover.webp',
+  '/images/chariot-de-course/cover.webp',
+  '/images/maison-beton/cover.webp',
+  '/images/banc/banc-1.webp',
+  '/images/message-tissus/cover.webp',
+  '/images/puzzle-marrant/cover.webp',
+  '/images/rideau-message/cover.webp',
+  '/images/tipi/cover.webp',
 ];
 
 export function HomePage() {
@@ -21,7 +22,6 @@ export function HomePage() {
   useEffect(() => {
     if (isPaused) return;
 
-    // Défilé ultra-rapide (0.5 seconde)
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % SLIDESHOW_IMAGES.length);
     }, 500);
