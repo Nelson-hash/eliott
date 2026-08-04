@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-// Liste des images du défilé à précharger silencieusement
+// Liste des images à précharger en arrière-plan
 const IMAGES_TO_PRELOAD = [
   '/images/interphone/cover.webp',
   '/images/gustave/cover.webp',
@@ -34,7 +34,7 @@ export function LandingPage() {
   const navigate = useNavigate();
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
-  // PRÉCHARGEMENT DANS LE CACHE DU NAVIGATEUR
+  // PRÉCHARGEMENT DANS LE CACHE NAVIGATEUR
   useEffect(() => {
     IMAGES_TO_PRELOAD.forEach((src) => {
       const img = new Image();
@@ -42,7 +42,7 @@ export function LandingPage() {
     });
   }, []);
 
-  // ANIMATION DE CONFETTIS
+  // ANIMATION CONFETTIS COLORÉS
   const triggerConfetti = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -53,13 +53,27 @@ export function LandingPage() {
     canvas.height = window.innerHeight;
 
     const particles: Particle[] = [];
-    const colors = ['#000000', '#111111', '#333333', '#555555', '#888888', '#aaaaaa', '#cccccc'];
+    
+    // PALETTE DE COULEURS VIVES & FESTIVES
+    const colors = [
+      '#FF2D55', // Rose Vif
+      '#FF9500', // Orange
+      '#FFCC00', // Jaune
+      '#4CD964', // Vert
+      '#5AC8FA', // Bleu Ciel
+      '#007AFF', // Bleu Roi
+      '#5856D6', // Violet
+      '#FF3B30', // Rouge
+      '#E040FB', // Magenta
+    ];
+    
     const centerX = window.innerWidth / 2;
     const centerY = window.innerHeight / 2;
 
+    // 250 confettis explosifs
     for (let i = 0; i < 250; i++) {
       const angle = Math.random() * Math.PI * 2;
-      const speed = Math.random() * 20 + 6;
+      const speed = Math.random() * 22 + 6;
 
       particles.push({
         x: centerX,
