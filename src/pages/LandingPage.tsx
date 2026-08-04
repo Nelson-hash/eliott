@@ -1,7 +1,7 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-// Liste des images à précharger en arrière-plan
+// Liste des visuels du défilé (sans les bancs)
 const IMAGES_TO_PRELOAD = [
   '/images/interphone/cover.webp',
   '/images/gustave/cover.webp',
@@ -32,16 +32,21 @@ interface Particle {
 export function LandingPage() {
   const navigate = useNavigate();
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const [isNavigating, setIsNavigating] = useState(false);
 
-  // PRÉCHARGEMENT DANS LE CACHE NAVIGATEUR
+  // PRÉCHARGEMENT ULTIME DANS LE GPU ET LE CACHE NAVIGATEUR
   useEffect(() => {
     IMAGES_TO_PRELOAD.forEach((src) => {
       const img = new Image();
       img.src = src;
+      if ('decode' in img) {
+        // Force le décodage matériel immédiat pour éliminer le moindre flash blanc
+        img.decode().catch(() => {});
+      }
     });
   }, []);
 
-  // ANIMATION CONFETTIS COLORÉS
+  // ANIMATION DE CONFETTIS COLORÉS
   const triggerConfetti = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -52,24 +57,14 @@ export function LandingPage() {
     canvas.height = window.innerHeight;
 
     const particles: Particle[] = [];
-    
-    // PALETTE DE COULEURS VIVES & FESTIVES
     const colors = [
-      '#FF2D55', // Rose Vif
-      '#FF9500', // Orange
-      '#FFCC00', // Jaune
-      '#4CD964', // Vert
-      '#5AC8FA', // Bleu Ciel
-      '#007AFF', // Bleu Roi
-      '#5856D6', // Violet
-      '#FF3B30', // Rouge
-      '#E040FB', // Magenta
+      '#FF2D55', '#FF9500', '#FFCC00', '#4CD964',
+      '#5AC8FA', '#007AFF', '#5856D6', '#FF3B30', '#E040FB',
     ];
-    
+
     const centerX = window.innerWidth / 2;
     const centerY = window.innerHeight / 2;
 
-    // 250 confettis explosifs
     for (let i = 0; i < 250; i++) {
       const angle = Math.random() * Math.PI * 2;
       const speed = Math.random() * 22 + 6;
@@ -89,7 +84,6 @@ export function LandingPage() {
       });
     }
 
-    let animationId: number;
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       let active = false;
@@ -115,11 +109,24 @@ export function LandingPage() {
       });
 
       if (active) {
-        animationId = requestAnimationFrame(animate);
+        requestAnimationFrame(animate);
       }
     };
 
     animate();
+  };
+
+  // GESTION DU CLIC / TOUCHER AVEC DÉCALAGE POUR MOBILE
+  const handleEntrerClick = () => {
+    triggerConfetti();
+
+    if (isNavigating) return;
+    setIsNavigating(true);
+
+    // Décalage de 500 ms pour admirer les confettis avant de charger la page
+    setTimeout(() => {
+      navigate('/home');
+    }, 500);
   };
 
   return (
@@ -130,8 +137,8 @@ export function LandingPage() {
       />
       <button
         onMouseEnter={triggerConfetti}
-        onClick={() => navigate('/home')}
-        className="text-5xl md:text-7xl font-light tracking-wider text-gray-900 hover:opacity-60 transition-opacity duration-300 z-20 px-8 py-4 cursor-pointer font-['Helvetica']"
+        onClick={handleEntrerClick}
+        className="text-5xl md:text-7xl font-light tracking-wider text-gray-900 hover:opacity-60 transition-opacity duration-300 z-20 px-8 py-4 cursor-pointer font-['Helvetica'] active:scale-95"
       >
         Entrer
       </button>
