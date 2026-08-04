@@ -5,6 +5,7 @@ import { LandingPage } from './pages/LandingPage';
 import { HomePage } from './pages/HomePage';
 import { ProjectPage } from './pages/ProjectPage';
 import { VracPage } from './pages/VracPage';
+import { MobilierPage } from './pages/MobilierPage';
 
 function AppContent() {
   const location = useLocation();
@@ -18,6 +19,7 @@ function AppContent() {
         <Route path="/home" element={<HomePage />} />
         <Route path="/projects/:id" element={<ProjectPage />} />
         <Route path="/vrac" element={<VracPage />} />
+        <Route path="/mobilier" element={<MobilierPage />} />
       </Routes>
     </div>
   );
